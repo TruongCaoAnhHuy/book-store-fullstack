@@ -1,0 +1,43 @@
+.wrapper {
+    margin-top: 23px;
+}
+
+.author-check {
+    width: 100%;
+    margin-bottom: 26px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.check-list {
+    margin-left: 10px;
+}
+
+.check-item {
+    margin-bottom: 13px;
+
+    .label {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        font-size: 1.4rem;
+        color: #8d8d8d;
+        user-select: none;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary);
+            font-weight: 600;
+        }
+    }
+
+    input {
+        cursor: pointer;
+        margin-right: 5px;
+    }
+}

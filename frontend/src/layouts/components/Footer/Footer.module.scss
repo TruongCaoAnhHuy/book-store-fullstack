@@ -1,0 +1,48 @@
+.wrapper {
+    margin-top: 45px;
+    padding: 45px 0;
+    font-size: 1.43rem;
+    box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
+}
+
+.title {
+    margin: 18px 0 10px 0;
+}
+
+.nav-list {}
+
+.nav-item {
+    padding: 12px 0;
+
+    span {
+        font-weight: 700;
+        transition: .3s linear;
+        cursor: pointer;
+
+        &:hover {
+            color: var(--primary);
+        }
+    }
+}
+
+.nav-item-link {
+    padding: 12px 0;
+    transition: .2s linear;
+
+    &:hover {
+        color: var(--primary);
+    }
+}
+
+.logo-footer {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-bottom: 8px;
+    margin-top: -3px;
+    width: 48px;
+}
+
+.content-footer {
+    text-align: justify;
+}
