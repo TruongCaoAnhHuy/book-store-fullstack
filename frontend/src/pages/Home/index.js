@@ -8,6 +8,7 @@ import Slider from '~/layouts/components/Slider/Slider';
 const cx = classNames.bind(styles);
 
 function Home() {
+    console.log(process.env.REACT_APP_SERVER_DOMIN);
     return (
         <>
             <div className={cx('product')}>
