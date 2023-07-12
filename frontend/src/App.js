@@ -13,10 +13,11 @@ function App() {
     const dispatch = useDispatch();
     // const productData = useSelector((state) => state.product);
     // const userData = useSelector((state) => state.user);
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     useEffect(() => {
         (async () => {
-            const resData = await fetch(`https://book-store-api-m8bg.onrender.com/admin/books`);
+            const resData = await fetch(`${api}/admin/books`);
             const data = await resData.json();
             dispatch(setDataProduct(data));
         })();
@@ -25,7 +26,7 @@ function App() {
 
     useEffect(() => {
         (async () => {
-            const resData = await fetch(`https://book-store-api-m8bg.onrender.com/admin/users`);
+            const resData = await fetch(`${api}/admin/users`);
             const data = await resData.json();
             dispatch(setDataUser(data));
         })();
