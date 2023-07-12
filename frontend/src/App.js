@@ -11,10 +11,7 @@ import { setDataUser } from './redux/userSlice';
 
 function App() {
     const dispatch = useDispatch();
-    // const productData = useSelector((state) => state.product);
-    // const userData = useSelector((state) => state.user);
     const api = process.env.REACT_APP_SERVER_DOMIN;
-    console.log(api);
 
     useEffect(() => {
         (async () => {
