@@ -1,17 +1,22 @@
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
+import { useState, useLayoutEffect } from 'react';
+import { toast } from 'react-hot-toast';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button/Button';
 import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icons';
 import styles from './Register.module.scss';
-import { useState } from 'react';
-import { toast } from 'react-hot-toast';
 
 const cx = classNames.bind(styles);
 
 function Register() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const navigative = useNavigate();
+
     const [values, setValues] = useState({
         name: '',
         email: '',
@@ -22,6 +27,8 @@ function Register() {
 
     const regexPass = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,}$/;
     const [errorMsg, setErrorMsg] = useState('');
+
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,7 +54,7 @@ function Register() {
             setErrorMsg('PhoneNumber must be numbers & > 10 numbers');
             return;
         } else {
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/signup`, {
+            const fetchData = await fetch(`${api}/signup`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

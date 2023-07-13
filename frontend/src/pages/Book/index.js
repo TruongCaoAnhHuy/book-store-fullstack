@@ -5,25 +5,36 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useSelector } from 'react-redux';
+import { useLayoutEffect, useState } from 'react';
 
 import styles from './Book.module.scss';
 import Button from '~/components/Button/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
+import { toast } from 'react-hot-toast';
+import Loading from '~/layouts/components/Loading/Loading';
 
 const cx = classNames.bind(styles);
 
 function Book() {
+    const [loading, setLoading] = useState(false);
+
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const productData = useSelector((state) => state.product.productList);
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleClickDelete = async (id) => {
         const answer = window.confirm('Do you wanna delete product ?');
         if (answer) {
-            let fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/admin/books/delete/${id}`, {
+            let fetchData = await fetch(`${api}/admin/books/delete/${id}`, {
                 method: 'DELETE',
             });
 
             const dataRes = await fetchData.json();
             if (dataRes) {
+                toast(dataRes.message);
                 window.location.reload();
             }
         } else {
@@ -88,7 +99,9 @@ function Book() {
                                         ))
                                     ) : (
                                         <tr>
-                                            <td colSpan={7}>You are not create books</td>
+                                            <td colSpan={7}>
+                                                <Loading />
+                                            </td>
                                         </tr>
                                     )}
                                 </tbody>

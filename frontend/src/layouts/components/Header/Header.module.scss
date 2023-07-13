@@ -6,14 +6,14 @@
     top: 0;
     transition: 0.3s linear;
     width: 100%;
-    z-index: 100;
+    z-index: 1001;
     user-select: none;
 }
 
 .shrink {
     height: 100px;
     box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
-    z-index: 100;
+    z-index: 1001;
 }
 
 .container {

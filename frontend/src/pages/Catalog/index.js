@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useLayoutEffect } from 'react';
 
 import ProductList from '~/layouts/ProductList/ProductList';
 import Sidebar from '~/layouts/Sidebar/Sidebar';
@@ -7,6 +8,10 @@ import styles from './Catalog.module.scss';
 const cx = classNames.bind(styles);
 
 function Catalog() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     return (
         <div className={cx('wrapper')}>
             <div className="grid wide">

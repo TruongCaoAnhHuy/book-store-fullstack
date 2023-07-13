@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,10 @@ import { ImagetoBase64 } from '~/ulti/ImagetoBase64';
 const cx = classNames.bind(styles);
 
 function EditBook() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const topics = [
         {
             id: 0,
@@ -118,12 +122,14 @@ function EditBook() {
         });
     };
 
+    const api = process.env.REACT_APP_SERVER_DOMIN;
+
     const handleSubmit = async (e, id) => {
         e.preventDefault();
         const { name, author, price, description, image, back_image, topic, type } = values;
 
         if (name && author && price && description && image && back_image && topic && type) {
-            const fetchData = await fetch(`http://localhost:3002/admin/books/update/${id}`, {
+            const fetchData = await fetch(`${api}/admin/books/update/${id}`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

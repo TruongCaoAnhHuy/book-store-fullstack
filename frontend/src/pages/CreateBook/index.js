@@ -1,18 +1,22 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './CreateBook.module.scss';
 import Button from '~/components/Button/Button';
 import { ImagetoBase64 } from '~/ulti/ImagetoBase64';
-import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function CreateBook() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     const topics = [
         {
             id: 0,
@@ -121,12 +125,14 @@ function CreateBook() {
         });
     };
 
+    const api = process.env.REACT_APP_SERVER_DOMIN;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const { name, author, price, description, image, back_image, topic, type } = values;
 
         if (name && author && price && description && image && back_image && topic && type) {
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/admin/books/create`, {
+            const fetchData = await fetch(`${api}/admin/books/create`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -137,9 +143,7 @@ function CreateBook() {
             console.log(data.data);
             toast(data.message);
             navigative('/admin/books');
-            setTimeout(() => {
-                window.location.reload();
-            }, 1000);
+            window.location.reload();
         } else {
             toast('Fill all fields !!!');
         }

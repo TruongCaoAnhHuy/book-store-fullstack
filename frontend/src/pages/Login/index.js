@@ -1,19 +1,28 @@
 import classNames from 'classnames/bind';
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
+import { toast } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button/Button';
 import { BackBtnIcon, FaceBookIcon, GoogleIcon } from '~/components/Icons/Icons';
 import styles from './Login.module.scss';
-import { toast } from 'react-hot-toast';
-import { useDispatch } from 'react-redux';
 import { loginRedux } from '~/redux/userSlice';
+import Loading from '~/layouts/components/Loading/Loading';
+import Modal from '~/components/Modal/Modal';
 
 const cx = classNames.bind(styles);
 
 function Login() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const navigative = useNavigate();
+
+    const [loading, setLoading] = useState(false);
+
     const [values, setValues] = useState({
         email: '',
         password: '',
@@ -21,12 +30,15 @@ function Login() {
 
     const dispatch = useDispatch();
 
+    const api = process.env.REACT_APP_SERVER_DOMIN;
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const { email, password } = values;
         if (email && password) {
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/signin`, {
+            setLoading(true);
+            const fetchData = await fetch(`${api}/signin`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -36,6 +48,7 @@ function Login() {
             const dataRes = await fetchData.json();
             toast(dataRes.message);
             if (dataRes.alert) {
+                setLoading(false);
                 dispatch(loginRedux(dataRes));
 
                 if (dataRes.data.isAdmin) {
@@ -110,6 +123,13 @@ function Login() {
                     <Link to={'/signup'}>Sign Up</Link>
                 </div>
             </PopperWrapper>
+            {loading ? (
+                <Modal>
+                    <Loading />
+                </Modal>
+            ) : (
+                <></>
+            )}
         </div>
     );
 }

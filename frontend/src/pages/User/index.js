@@ -4,21 +4,28 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle, faEdit, faTrash, faXmarkCircle } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
+import { useSelector } from 'react-redux';
+import { useLayoutEffect } from 'react';
 
 import styles from './User.module.scss';
 import Button from '~/components/Button/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import { useSelector } from 'react-redux';
 
 const cx = classNames.bind(styles);
 
 function User() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const userData = useSelector((state) => state.user.user);
+
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleClickDelete = async (id) => {
         const answer = window.confirm('Do you wanna delete product ?');
         if (answer) {
-            let fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/admin/users/delete/${id}`, {
+            let fetchData = await fetch(`${api}/admin/users/delete/${id}`, {
                 method: 'DELETE',
             });
 

@@ -1,4 +1,5 @@
 import classNames from 'classnames/bind';
+import { useLayoutEffect } from 'react';
 
 import Banner from '~/components/Banner/Banner';
 import ProductList from '~/layouts/ProductList/ProductList';
@@ -8,6 +9,10 @@ import Slider from '~/layouts/components/Slider/Slider';
 const cx = classNames.bind(styles);
 
 function Home() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     return (
         <>
             <div className={cx('product')}>

@@ -1,15 +1,19 @@
 import classNames from 'classnames/bind';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useLayoutEffect } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './EditUser.module.scss';
 import Button from '~/components/Button/Button';
-import { toast } from 'react-hot-toast';
-import { useNavigate, useParams } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function EditUser() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const navigative = useNavigate();
     let params = useParams();
 
@@ -22,6 +26,8 @@ function EditUser() {
     });
 
     const regexPass = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,}$/;
+
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleSubmit = async (e, id) => {
         e.preventDefault();
@@ -41,7 +47,7 @@ function EditUser() {
             toast('PhoneNumber must be numbers & > 10 numbers');
             return;
         } else {
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/admin/users/update/${id}`, {
+            const fetchData = await fetch(`${api}/admin/users/update/${id}`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

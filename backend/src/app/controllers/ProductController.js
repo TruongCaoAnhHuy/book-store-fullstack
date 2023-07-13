@@ -21,7 +21,7 @@ class ProductController {
     //[DELETE] /admin/books/delete/:id
     async delete(req, res, next) {
         const data = await Product.findByIdAndDelete(req.params.id);
-        res.send(data);
+        res.send({ message: 'Delete successfully, Please wait !!', data: data });
     }
 
     //[PUT] /admin/books/edit/:id

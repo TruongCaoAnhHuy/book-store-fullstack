@@ -1,15 +1,19 @@
 import classNames from 'classnames/bind';
-import { useState } from 'react';
+import { useState, useLayoutEffect } from 'react';
+import { toast } from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import styles from './CreateUser.module.scss';
 import Button from '~/components/Button/Button';
-import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function CreateUser() {
+    useLayoutEffect(() => {
+        window.scrollTo(0, 0);
+    });
+
     const navigative = useNavigate();
 
     const [values, setValues] = useState({
@@ -21,6 +25,8 @@ function CreateUser() {
     });
 
     const regexPass = /^(?=.*[A-Z])(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])(?=.*\d).{8,}$/;
+
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -40,7 +46,7 @@ function CreateUser() {
             toast('PhoneNumber must be numbers & > 10 numbers');
             return;
         } else {
-            const fetchData = await fetch(`${process.env.REACT_APP_SERVER_DOMIN}/signup`, {
+            const fetchData = await fetch(`${api}/signup`, {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -53,7 +59,6 @@ function CreateUser() {
                 navigative('/admin/users');
                 window.location.reload();
             }
-            console.log(values);
         }
     };
 

@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-
 import { useLayoutEffect, useEffect } from 'react';
 
 import styles from './Cart.module.scss';

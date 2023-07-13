@@ -10,12 +10,12 @@ const cx = classNames.bind(styles);
 
 function SidebarAdmin() {
     const navs = [
-        {
-            id: 1,
-            title: 'Dashboard',
-            icon: faChartBar,
-            path: '/admin/dashboard',
-        },
+        // {
+        //     id: 1,
+        //     title: 'Dashboard',
+        //     icon: faChartBar,
+        //     path: '/admin/dashboard',
+        // },
         {
             id: 2,
             title: 'Books',

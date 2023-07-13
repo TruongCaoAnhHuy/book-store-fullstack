@@ -3,6 +3,7 @@ import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
 import ProductItem from '../ProductItem/ProductItem';
+import Loading from '../Loading/Loading';
 
 function Slider() {
     const productData = useSelector((state) => state.product.productList);
@@ -28,25 +29,29 @@ function Slider() {
 
     return (
         <div className="grid wide">
-            <Carousel responsive={responsive} autoPlaySpeed={800} infinite={true} autoPlay centerMode>
-                {productData.map((product, index) => (
-                    <ProductItem
-                        className={'col l-4'}
-                        key={index}
-                        id={product._id}
-                        name={product.name}
-                        author={product.author}
-                        image={product.image}
-                        back_image={product.back_image}
-                        price={product.price}
-                        sale={product.sale}
-                        topic={product.topic}
-                        type={product.type}
-                        description={product.description}
-                        to={`/books/${product._id}`}
-                    />
-                ))}
-            </Carousel>
+            {productData.length > 0 ? (
+                <Carousel responsive={responsive} autoPlaySpeed={1500} infinite={true} autoPlay centerMode>
+                    {productData.map((product, index) => (
+                        <ProductItem
+                            className={'col l-4'}
+                            key={index}
+                            id={product._id}
+                            name={product.name}
+                            author={product.author}
+                            image={product.image}
+                            back_image={product.back_image}
+                            price={product.price}
+                            sale={product.sale}
+                            topic={product.topic}
+                            type={product.type}
+                            description={product.description}
+                            to={`/books/${product._id}`}
+                        />
+                    ))}
+                </Carousel>
+            ) : (
+                <Loading />
+            )}
         </div>
     );
 }
