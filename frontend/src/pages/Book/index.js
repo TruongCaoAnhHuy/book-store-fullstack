@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
 import { useSelector } from 'react-redux';
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect } from 'react';
 
 import styles from './Book.module.scss';
 import Button from '~/components/Button/Button';
