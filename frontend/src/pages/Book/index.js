@@ -16,8 +16,6 @@ import Loading from '~/layouts/components/Loading/Loading';
 const cx = classNames.bind(styles);
 
 function Book() {
-    const [loading, setLoading] = useState(false);
-
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
     }, []);
