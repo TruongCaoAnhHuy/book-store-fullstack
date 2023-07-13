@@ -10,7 +10,7 @@ function Sidebar() {
     console.log(productData);
     const authorArr = [];
     productData.map((product) => {
-        authorArr.push(product.author);
+        return authorArr.push(product.author);
     });
     // arrayAuthor
     const authors = authorArr.filter((item, index) => authorArr.indexOf(item) === index);
