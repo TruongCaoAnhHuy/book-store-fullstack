@@ -1,16 +1,21 @@
 import classNames from 'classnames/bind';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Modal from '~/components/Modal/Modal';
 import styles from './ProductModal.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button/Button';
 import { CartIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icons';
+import { AddCart } from '~/redux/cartSlice';
 
 const cx = classNames.bind(styles);
 
 function ProductModal(props) {
     const { children } = props;
+
+    const dispatch = useDispatch();
+
     const [checkType, setCheckType] = useState();
     const [quantity, setQuantity] = useState(1);
     const [imageShow, setImageShow] = useState(props.value.image);
@@ -24,6 +29,29 @@ function ProductModal(props) {
             setQuantity(1);
         } else {
             setQuantity(quantity - 1);
+        }
+    };
+
+    const check = () => {
+        if (checkType === undefined) {
+            alert('Choose Type of book please !!!');
+            return false;
+        }
+
+        return true;
+    };
+
+    const addToCart = () => {
+        if (check()) {
+            const newItem = {
+                name: props.value.name || '',
+                author: props.value.author || '',
+                quantity: quantity || '',
+                price: props.value.price,
+                image: props.value.image,
+                type: checkType,
+            };
+            dispatch(AddCart(newItem));
         }
     };
 
@@ -79,8 +107,8 @@ function ProductModal(props) {
                                                 <input
                                                     type="radio"
                                                     className={cx('input-checkbox')}
-                                                    checked={checkType === index}
-                                                    onChange={() => setCheckType(index)}
+                                                    checked={checkType === type}
+                                                    onChange={() => setCheckType(type)}
                                                 />
                                                 {type}
                                             </label>
@@ -100,7 +128,7 @@ function ProductModal(props) {
                                     </div>
                                 </div>
                                 <div className={cx('group', 'btn-group')}>
-                                    <Button primary large>
+                                    <Button primary large onClick={addToCart}>
                                         <span className={cx('btn-icon')}>
                                             <CartIcon />
                                         </span>
