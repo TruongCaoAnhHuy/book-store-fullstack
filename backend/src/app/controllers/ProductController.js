@@ -11,7 +11,7 @@ class ProductController {
     //[GET] /admin/books
     async product(req, res, next) {
         try {
-            const data = await Product.find({});
+            const data = await Product.find({}).sort({ timestamp: -1 });
             res.send(data);
         } catch (error) {
             console.log(error);
