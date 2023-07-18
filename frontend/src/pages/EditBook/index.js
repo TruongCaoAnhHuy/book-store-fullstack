@@ -15,7 +15,7 @@ const cx = classNames.bind(styles);
 function EditBook() {
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, []);
 
     const topics = [
         {
@@ -63,6 +63,17 @@ function EditBook() {
         },
     ];
 
+    const displays = [
+        {
+            id: 0,
+            name: 'Slider',
+        },
+        {
+            id: 1,
+            name: 'Feature',
+        },
+    ];
+
     const [values, setValues] = useState({
         name: '',
         author: '',
@@ -73,6 +84,7 @@ function EditBook() {
         back_image: '',
         topic: [],
         type: [],
+        display: [],
     });
 
     const navigative = useNavigate();
@@ -122,6 +134,17 @@ function EditBook() {
         });
     };
 
+    const handleSetDisplayChecked = (name) => {
+        setValues((prev) => {
+            const isChecked = values.display.includes(name);
+            if (isChecked) {
+                return { ...prev, display: [...values.display.filter((item) => item !== name)] };
+            } else {
+                return { ...prev, display: [...values.display, name] };
+            }
+        });
+    };
+
     const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleSubmit = async (e, id) => {
@@ -163,6 +186,7 @@ function EditBook() {
             back_image: dataRes.back_image,
             topic: dataRes.topic,
             type: dataRes.type,
+            display: dataRes.display,
         });
     };
 
@@ -304,6 +328,23 @@ function EditBook() {
                                             onChange={() => handleSetTypeChecked(type.name)}
                                         />
                                         {type.name}
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
+
+                        <div className={cx('form-group')}>
+                            <label htmlFor="type">Displays:</label>
+                            <div className={cx('action')}>
+                                {displays.map((display) => (
+                                    <label key={display.id}>
+                                        <input
+                                            type="checkbox"
+                                            className={cx('input-checkbox')}
+                                            checked={values.display.includes(display.name)}
+                                            onChange={() => handleSetDisplayChecked(display.name)}
+                                        />
+                                        {display.name}
                                     </label>
                                 ))}
                             </div>

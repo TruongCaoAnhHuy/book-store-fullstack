@@ -6,12 +6,30 @@ import { useDispatch } from 'react-redux';
 import { AdminRoute, ProtectedRoute, adminRoutes, privateRoutes, publicRoutes } from '~/routes';
 import { MainLayout } from '~/layouts';
 import AdminLayout from './layouts/AdminLayout/AdminLayout';
-import { setDataProduct } from './redux/productSlice';
+import { setDataProduct, setDataProductSlider, setDataProductFeature } from './redux/productSlice';
 import { setDataUser } from './redux/userSlice';
 
 function App() {
     const dispatch = useDispatch();
     const api = process.env.REACT_APP_SERVER_DOMIN;
+
+    useEffect(() => {
+        (async () => {
+            const resData = await fetch(`${api}/admin/books/slider`);
+            const data = await resData.json();
+            dispatch(setDataProductSlider(data));
+        })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const resData = await fetch(`${api}/admin/books/feature`);
+            const data = await resData.json();
+            dispatch(setDataProductFeature(data));
+        })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         (async () => {

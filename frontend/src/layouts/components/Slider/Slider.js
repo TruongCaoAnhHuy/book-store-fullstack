@@ -6,7 +6,7 @@ import ProductItem from '../ProductItem/ProductItem';
 import Loading from '../Loading/Loading';
 
 function Slider() {
-    const productData = useSelector((state) => state.product.productList);
+    const productData = useSelector((state) => state.product.productSliderList);
     const responsive = {
         superLargeDesktop: {
             // the naming can be any, depends on you.

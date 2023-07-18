@@ -14,6 +14,7 @@ const Product = new Schema(
         book_cover: { type: String, require },
         price: { type: Number, require: true },
         sale: { type: Number, default: 0 },
+        display: { type: Array },
     },
     {
         timestamps: true,

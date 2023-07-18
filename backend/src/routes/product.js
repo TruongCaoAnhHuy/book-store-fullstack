@@ -7,6 +7,9 @@ router.post('/create', productController.store);
 router.delete('/delete/:id', productController.delete);
 router.post('/edit/:id', productController.edit);
 router.post('/update/:id', productController.update);
+router.use('/slider', productController.slider);
+router.use('/feature', productController.feature);
+
 router.use('/', productController.product);
 
 module.exports = router;

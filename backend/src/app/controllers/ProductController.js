@@ -18,6 +18,26 @@ class ProductController {
         }
     }
 
+    //[GET] /admin/books/slider
+    async slider(req, res, next) {
+        try {
+            const data = await Product.find({ display: { $in: ['Slider'] } }).sort({ timestamp: -1 });
+            res.send(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    //[GET] /admin/books/feature
+    async feature(req, res, next) {
+        try {
+            const data = await Product.find({ display: { $in: ['Feature'] } }).sort({ timestamp: -1 });
+            res.send(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
     //[DELETE] /admin/books/delete/:id
     async delete(req, res, next) {
         const data = await Product.findByIdAndDelete(req.params.id);
