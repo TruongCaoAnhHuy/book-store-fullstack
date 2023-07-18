@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { useLayoutEffect, useState, useEffect } from 'react';
+import { useLayoutEffect, useState } from 'react';
 
 import ProductList from '~/layouts/ProductList/ProductList';
 import Sidebar from '~/layouts/Sidebar/Sidebar';
