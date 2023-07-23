@@ -4,13 +4,13 @@ import { useSelector } from 'react-redux';
 import styles from './Oder.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button/Button';
+import Loading from '~/layouts/components/Loading/Loading';
 
 const cx = className.bind(styles);
 
 function Order() {
     const orderData = useSelector((state) => state.order.orderList);
     const userData = useSelector((state) => state.user.user);
-    console.log(orderData);
 
     const orderUser = orderData.map((order, index) => {
         const user = userData.filter((item) => item._id === order.user);
@@ -18,7 +18,10 @@ function Order() {
         return user;
     });
 
-    console.log(orderUser);
+    const ts = orderData.map((order) => {
+        const date = new Date(order.createdAt);
+        return date.toLocaleString();
+    });
 
     return (
         <div className={cx('wrapper')}>
@@ -39,28 +42,38 @@ function Order() {
                                         <th className={cx('table-col')}>User Name</th>
                                         <th className={cx('table-col')}>User Email</th>
                                         <th className={cx('table-col')}>User Phone</th>
+                                        <th className={cx('table-col')}>Created At</th>
                                         <th className={cx('table-col')}>Cart</th>
                                         <th className={cx('table-col')}>Total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {orderData.map((data, index) => (
-                                        <tr key={index}>
-                                            <th className={cx('table-col')}>{index + 1}</th>
-                                            <td className={cx('table-col')}>{orderUser[index][0].name}</td>
-                                            <td className={cx('table-col')}>{orderUser[index][0].email}</td>
-                                            <td className={cx('table-col')}>{orderUser[index][0].phone}</td>
-                                            <td className={cx('table-col')}>
-                                                {data.orderItems.map((item, index) => (
-                                                    <div key={index} className={cx('image-item')}>
-                                                        <img src={item.image} alt="book" /> ${item.price} x{' '}
-                                                        {item.quantity}
-                                                    </div>
-                                                ))}
+                                    {orderData.length > 0 ? (
+                                        orderData.map((data, index) => (
+                                            <tr key={index}>
+                                                <th className={cx('table-col')}>{index + 1}</th>
+                                                <td className={cx('table-col')}>{orderUser[index][0].name}</td>
+                                                <td className={cx('table-col')}>{orderUser[index][0].email}</td>
+                                                <td className={cx('table-col')}>{orderUser[index][0].phone}</td>
+                                                <td className={cx('table-col')}>{ts[index]}</td>
+                                                <td className={cx('table-col')}>
+                                                    {data.orderItems.map((item, index) => (
+                                                        <div key={index} className={cx('image-item')}>
+                                                            <img src={item.image} alt="book" /> ${item.price} x{' '}
+                                                            {item.quantity}
+                                                        </div>
+                                                    ))}
+                                                </td>
+                                                <td className={cx('table-col')}>${data.totalPrice}</td>
+                                            </tr>
+                                        ))
+                                    ) : (
+                                        <tr>
+                                            <td colSpan={7}>
+                                                <Loading />
                                             </td>
-                                            <td className={cx('table-col')}>${data.totalPrice}</td>
                                         </tr>
-                                    ))}
+                                    )}
                                 </tbody>
                             </table>
                         </div>

@@ -3,9 +3,9 @@ import { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Banner from '~/components/Banner/Banner';
-import styles from './Home.module.scss';
 import Slider from '~/layouts/components/Slider/Slider';
 import FeatureProduct from '~/layouts/FeatureProduct/FeatureProduct';
+import styles from './Home.module.scss';
 
 const cx = classNames.bind(styles);
 

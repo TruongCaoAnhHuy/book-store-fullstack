@@ -57,7 +57,7 @@ function Book() {
                                     <tr>
                                         <th className={cx('table-col')}>#</th>
                                         <th className={cx('table-col')}>Book Image</th>
-                                        <th className={cx('table-col')}>Book Name</th>
+                                        <th className={cx('table-col', 'tb-name')}>Book Name</th>
                                         <th className={cx('table-col')}>Book Author</th>
                                         <th className={cx('table-col')}>Book Price</th>
                                         <th className={cx('table-col')}>Actions</th>
