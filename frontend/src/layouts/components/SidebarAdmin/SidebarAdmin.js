@@ -1,21 +1,21 @@
 import classNames from 'classnames/bind';
-import styles from './SidebarAdmin.module.scss';
 import { Link, NavLink } from 'react-router-dom';
-import images from '~/assets/img';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBook, faCartShopping, faChartBar, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faBook, faCartShopping, faUser } from '@fortawesome/free-solid-svg-icons';
+
+import styles from './SidebarAdmin.module.scss';
+import images from '~/assets/img';
 
 const cx = classNames.bind(styles);
 
 function SidebarAdmin() {
     const navs = [
-        {
-            id: 1,
-            title: 'Dashboard',
-            icon: faChartBar,
-            path: '/admin/dashboard',
-        },
+        // {
+        //     id: 1,
+        //     title: 'Dashboard',
+        //     icon: faChartBar,
+        //     path: '/admin/dashboard',
+        // },
         {
             id: 2,
             title: 'Books',

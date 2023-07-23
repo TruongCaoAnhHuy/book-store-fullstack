@@ -9,6 +9,7 @@ class LoginController {
             .then((user) => {
                 if (user) {
                     const dataSend = {
+                        id: user._id,
                         name: user.name,
                         email: user.email,
                         phone: user.phone,

@@ -5,6 +5,7 @@ const adminRouter = require('./admin');
 const userRouter = require('./user');
 const bookRouter = require('./book');
 const productRouter = require('./product');
+const orderRouter = require('./order');
 
 function route(app) {
     app.post('/signup', registerRouter);
@@ -12,6 +13,7 @@ function route(app) {
     app.use('/books', bookRouter);
     app.use('/admin/books', productRouter);
     app.use('/admin/users', userRouter);
+    app.use('/order', orderRouter);
     app.use('/', siteRouter);
 }
 

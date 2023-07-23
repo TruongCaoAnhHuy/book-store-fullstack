@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
@@ -17,26 +17,29 @@ import { GetTotal } from '~/redux/cartSlice';
 const cx = classNames.bind(styles);
 
 function Header() {
+    const navigative = useNavigate();
+    const userData = JSON.parse(localStorage.getItem('user'));
+
     const mainNav = [
         {
             id: 1,
             title: 'Home',
-            path: '/',
+            path: userData ? `/${userData.id}` : '/',
         },
         {
             id: 2,
             title: 'Books',
-            path: '/catalog',
+            path: userData ? `/catalog/${userData.id}` : '/catalog',
         },
         {
             id: 3,
             title: 'About Us',
-            path: '/about',
+            path: userData ? `/about/${userData.id}` : '/about',
         },
         {
             id: 4,
             title: 'Contact',
-            path: '/contact',
+            path: userData ? `/contact/${userData.id}` : '/contact',
         },
     ];
 
@@ -71,6 +74,7 @@ function Header() {
     const handleLogout = () => {
         dispatch(logoutRedux());
         setTimeout(() => {
+            navigative('/');
             window.location.reload();
         }, 500);
     };
@@ -120,7 +124,7 @@ function Header() {
                                                 <SearchIcon />
                                             </button>
                                         </Tippy>
-                                        <Button to={'/cart'} className={cx('cart')}>
+                                        <Button to={`/cart/${userData.id}`} className={cx('cart')}>
                                             <CartIcon />
                                         </Button>
                                         <span className={cx('quality')}>{quantity}</span>

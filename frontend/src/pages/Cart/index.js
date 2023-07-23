@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLayoutEffect, useEffect } from 'react';
+import { useLayoutEffect, useEffect, useState } from 'react';
 
 import styles from './Cart.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
@@ -24,6 +24,25 @@ function Cart() {
     }, [carts]);
 
     const cartLocalstorage = JSON.parse(localStorage.getItem('cartItems'));
+    const userLocalstorage = JSON.parse(localStorage.getItem('user'));
+
+    const [test, setTest] = useState('');
+
+    const api = process.env.REACT_APP_SERVER_DOMIN;
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        const fetchData = await fetch(`${api}/order/${userLocalstorage.id}`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(cartLocalstorage),
+        });
+        const dataRes = await fetchData.json();
+        console.log(dataRes);
+    };
 
     return (
         <div className="grid wide">
@@ -39,9 +58,12 @@ function Cart() {
                                     <p className={cx('price-label')}>Total:</p>
                                     <h2 className={cx('price-value')}>${total}</h2>
                                 </div>
-                                <Button primary large className={cx('info-btn')}>
-                                    Submit an order
-                                </Button>
+                                <form onSubmit={(e) => handleSubmit(e)}>
+                                    <input value={test} onChange={(e) => setTest(e.target.value)} />
+                                    <Button primary large className={cx('info-btn')}>
+                                        Submit an order
+                                    </Button>
+                                </form>
                                 <Button to={'/catalog'} primary large className={cx('info-btn')}>
                                     Shop further
                                 </Button>

@@ -8,6 +8,7 @@ import { MainLayout } from '~/layouts';
 import AdminLayout from './layouts/AdminLayout/AdminLayout';
 import { setDataProduct, setDataProductSlider, setDataProductFeature } from './redux/productSlice';
 import { setDataUser } from './redux/userSlice';
+import { setDataOrder } from './redux/orderSlice';
 
 function App() {
     const dispatch = useDispatch();
@@ -45,6 +46,16 @@ function App() {
             const resData = await fetch(`${api}/admin/users`);
             const data = await resData.json();
             dispatch(setDataUser(data));
+        })();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            const resData = await fetch(`${api}/order`);
+            const data = await resData.json();
+            console.log(data);
+            dispatch(setDataOrder(data));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

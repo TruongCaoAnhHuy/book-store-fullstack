@@ -7,7 +7,6 @@ import Loading from '../components/Loading/Loading';
 const cx = classNames.bind(styles);
 
 function FeatureProduct(props) {
-    console.log(props.value);
     return (
         <div className="grid wide">
             <div className={`${cx('wrapper')}`}>

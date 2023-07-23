@@ -7,7 +7,7 @@ const Order = new Schema(
         user: {
             type: mongoose.Schema.Types.ObjectId,
             require: true,
-            ref: 'User',
+            ref: 'users',
         },
         orderItems: [
             {
@@ -18,7 +18,7 @@ const Order = new Schema(
                 product: {
                     type: mongoose.Schema.Types.ObjectId,
                     require: true,
-                    ref: 'Product',
+                    ref: 'products',
                 },
             },
         ],
@@ -29,4 +29,4 @@ const Order = new Schema(
     },
 );
 
-module.exports = mongoose.model('Order', Order);
+module.exports = mongoose.model('orders', Order);
