@@ -54,7 +54,6 @@ function App() {
         (async () => {
             const resData = await fetch(`${api}/order`);
             const data = await resData.json();
-            console.log(data);
             dispatch(setDataOrder(data));
         })();
         // eslint-disable-next-line react-hooks/exhaustive-deps
