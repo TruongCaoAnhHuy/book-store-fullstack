@@ -69,8 +69,6 @@ function Header() {
     const userStorage = JSON.parse(localStorage.getItem('user'));
     const adminStorage = JSON.parse(sessionStorage.getItem('admin'));
 
-    const userDate = new Date(userStorage.createdAt).toLocaleString();
-
     const currentUser = userStorage ? true : false;
     const adminUser = adminStorage ? true : false;
 
@@ -169,7 +167,9 @@ function Header() {
                                                                 <div className={cx('userdate')}>
                                                                     <p className={cx('userdate_label')}>Created: </p>
                                                                     <h3 className={`${cx('userdate_value')}`}>
-                                                                        {userDate}
+                                                                        {new Date(
+                                                                            userStorage.createdAt,
+                                                                        ).toLocaleString()}
                                                                     </h3>
                                                                 </div>
                                                             ) : (
