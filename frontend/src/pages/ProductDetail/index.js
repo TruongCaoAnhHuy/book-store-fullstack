@@ -4,10 +4,10 @@ import { useState, useEffect, useLayoutEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import Button from '~/components/Button/Button';
-import styles from './ProductDetail.module.scss';
 import { CartIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icons';
 import { AddCart } from '~/redux/cartSlice';
 import Loading from '~/layouts/components/Loading/Loading';
+import styles from './ProductDetail.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -111,7 +111,7 @@ function ProductDetail() {
                         <Loading />
                     ) : (
                         <>
-                            <div className={`${cx('image')} col l-6`}>
+                            <div className={`${cx('image')} col l-6 m-6 c-12`}>
                                 <div className={cx('img-list')}>
                                     <img src={values.image} alt="book" onClick={() => setImageShow(values.image)} />
                                     <img
@@ -124,7 +124,7 @@ function ProductDetail() {
                                     <img src={imageShow} alt="book" />
                                 </div>
                             </div>
-                            <div className={`${cx('content')} col l-6`}>
+                            <div className={`${cx('content')} col l-6 m-6 c-12`}>
                                 <h1 className={cx('name')}>{values.name}</h1>
                                 <div className={cx('group', 'author-group')}>
                                     <span>Author: </span>

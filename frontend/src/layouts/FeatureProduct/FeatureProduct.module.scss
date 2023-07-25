@@ -9,3 +9,11 @@
 .product-item {
     margin-bottom: 23px;
 }
+
+@media only screen and (max-width: 600px) {
+    .product-item {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

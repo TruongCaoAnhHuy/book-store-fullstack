@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 
 import styles from './Sidebar.module.scss';
 import Button from '~/components/Button/Button';
+import { BackBtnIconMobile } from '~/components/Icons/Icons';
 
 const cx = classNames.bind(styles);
 
@@ -84,61 +85,77 @@ function Sidebar(props) {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [checkAuthor, checkedTopic]);
 
+    // responsive
+    const [toggleMenuMobile, setToggleMenuMobile] = useState(false);
+    const handleToggleMenuMobile = () => {
+        setToggleMenuMobile(!toggleMenuMobile);
+    };
+
     return (
-        <div className={cx('wrapper', productData.length > 0 ? '' : 'hidden')}>
-            <div className={cx('author-check')}>
-                <h2 className={cx('title')}>Author</h2>
-                <ul className={cx('check-list')}>
-                    {authors.map((author, index) => (
-                        <li className={cx('check-item')} key={index}>
+        <>
+            <div className={cx('wrapper', productData.length > 0 ? '' : 'hidden', toggleMenuMobile ? 'mobile' : '')}>
+                <div className={cx('back')} onClick={handleToggleMenuMobile}>
+                    <BackBtnIconMobile />
+                </div>
+                <div className={cx('author-check')}>
+                    <h2 className={cx('title')}>Author</h2>
+                    <ul className={cx('check-list')}>
+                        {authors.map((author, index) => (
+                            <li className={cx('check-item')} key={index}>
+                                <label className={cx('label')}>
+                                    <input
+                                        type="checkbox"
+                                        checked={checkAuthor.includes(author)}
+                                        onChange={() => handleCheckedAuthor(author)}
+                                    />
+                                    {author}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className={cx('author-check')}>
+                    <h2 className={cx('title')}>Topic</h2>
+                    <ul className={cx('check-list')}>
+                        {topics.map((topic, index) => (
+                            <li className={cx('check-item')} key={index}>
+                                <label className={cx('label')}>
+                                    <input
+                                        type="checkbox"
+                                        checked={checkedTopic.includes(topic.name)}
+                                        onChange={() => handleCheckedTopic(topic.name)}
+                                    />
+                                    {topic.name}
+                                </label>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                <div className={cx('author-check')}>
+                    <h2 className={cx('title')}>Book Cover</h2>
+                    <ul className={cx('check-list')}>
+                        <li className={cx('check-item')}>
                             <label className={cx('label')}>
-                                <input
-                                    type="checkbox"
-                                    checked={checkAuthor.includes(author)}
-                                    onChange={() => handleCheckedAuthor(author)}
-                                />
-                                {author}
+                                <input type="checkbox" />
+                                Hardcover
                             </label>
                         </li>
-                    ))}
-                </ul>
-            </div>
-            <div className={cx('author-check')}>
-                <h2 className={cx('title')}>Topic</h2>
-                <ul className={cx('check-list')}>
-                    {topics.map((topic, index) => (
-                        <li className={cx('check-item')} key={index}>
+                        <li className={cx('check-item')}>
                             <label className={cx('label')}>
-                                <input
-                                    type="checkbox"
-                                    checked={checkedTopic.includes(topic.name)}
-                                    onChange={() => handleCheckedTopic(topic.name)}
-                                />
-                                {topic.name}
+                                <input type="checkbox" />
+                                Paperback
                             </label>
                         </li>
-                    ))}
-                </ul>
+                    </ul>
+                </div>
+                <Button className={cx('clear-btn')} primary>
+                    Clear checked
+                </Button>
             </div>
-            <div className={cx('author-check')}>
-                <h2 className={cx('title')}>Book Cover</h2>
-                <ul className={cx('check-list')}>
-                    <li className={cx('check-item')}>
-                        <label className={cx('label')}>
-                            <input type="checkbox" />
-                            Hardcover
-                        </label>
-                    </li>
-                    <li className={cx('check-item')}>
-                        <label className={cx('label')}>
-                            <input type="checkbox" />
-                            Paperback
-                        </label>
-                    </li>
-                </ul>
-            </div>
-            <Button primary>Clear checked</Button>
-        </div>
+            <Button className={cx('toggle-sidebar')} primary onClick={handleToggleMenuMobile}>
+                bộ lọc
+            </Button>
+        </>
     );
 }
 

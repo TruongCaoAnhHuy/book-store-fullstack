@@ -1,4 +1,5 @@
-.wrapper {}
+.wrapper {
+}
 
 .image {
     position: sticky;
@@ -171,8 +172,7 @@
         height: auto;
         cursor: pointer;
 
-
-        +label {
+        + label {
             margin-left: 20px;
         }
     }
@@ -211,4 +211,46 @@
     font-size: 2rem;
     height: 40px;
     justify-content: center;
+}
+
+// responsive
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .img-main {
+        img {
+            width: 280px;
+            height: 530px;
+        }
+    }
+}
+
+//phone
+@media only screen and (max-width: 1023px) {
+    .wrapper {
+        padding: 0 20px;
+    }
+    .image {
+        margin-bottom: 20px;
+    }
+    .img-list {
+        width: 28%;
+        height: 100%;
+
+        img {
+            width: 115px;
+            height: 170px;
+        }
+    }
+
+    .img-main {
+        img {
+            width: 220px;
+            height: 415px;
+        }
+    }
+
+    .btn-group {
+        height: 150px;
+        flex-direction: column;
+        align-items: center;
+    }
 }

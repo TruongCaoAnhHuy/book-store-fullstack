@@ -11,7 +11,7 @@ function Footer() {
         <div className={cx('wrapper')}>
             <div className="grid wide">
                 <div className="row">
-                    <div className="col l-4">
+                    <div className="col l-4 m-4 c-12">
                         <h1 className={cx('title')}>Information</h1>
                         <ul className={cx('nav-list')}>
                             <li className={cx('nav-item')}>
@@ -36,7 +36,7 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="col l-4">
+                    <div className="col l-4 m-4 c-12">
                         <h1 className={cx('title')}>Contact</h1>
                         <ul className={cx('nav-list')}>
                             <li className={cx('nav-item')}>
@@ -50,7 +50,7 @@ function Footer() {
                             </li>
                         </ul>
                     </div>
-                    <div className="col l-4">
+                    <div className="col l-4 m-4 c-12">
                         <img className={cx('logo-footer')} src={images.logo_footer} alt="logo" />
                         <div className={cx('content-footer')}>
                             <p>

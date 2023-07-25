@@ -9,3 +9,16 @@
 .product-item {
     margin-bottom: 23px;
 }
+
+// responsive
+@media only screen and (max-width: 1024px) {
+    .products-wrapper {
+        margin-top: 60px;
+    }
+
+    .product-item {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

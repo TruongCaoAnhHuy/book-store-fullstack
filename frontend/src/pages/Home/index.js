@@ -12,9 +12,9 @@ const cx = classNames.bind(styles);
 function Home() {
     const productData = useSelector((state) => state.product.productFeatureList);
 
-    useLayoutEffect(() => {
-        window.scrollTo(0, 0);
-    }, []);
+    // useLayoutEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, []);
 
     return (
         <>
@@ -24,7 +24,7 @@ function Home() {
                     <Banner />
                 </div>
                 <h1 className={cx('title')}>Featured Products</h1>
-                <FeatureProduct col={'2-4'} value={productData} />
+                <FeatureProduct col={'l-2-4 m-3 c-9'} value={productData} />
             </div>
         </>
     );

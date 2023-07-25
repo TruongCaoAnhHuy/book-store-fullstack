@@ -14,7 +14,7 @@ function FeatureProduct(props) {
                     {props.value.length > 0 ? (
                         <ul className={`${cx('product-list')} row`}>
                             {props.value.map((product) => (
-                                <li key={product._id} className={`${cx('product-item')} col l-${props.col}`}>
+                                <li key={product._id} className={`${cx('product-item')} col ${props.col}`}>
                                     <ProductItem
                                         id={product._id}
                                         name={product.name}

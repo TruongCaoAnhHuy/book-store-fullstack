@@ -11,7 +11,7 @@
     --facebook: #68bbff;
     --border: #8d8d8d;
 
-    --gray-color: #CBCFD8;
+    --gray-color: #cbcfd8;
     --text-color: #333333;
 }
 
@@ -26,7 +26,7 @@ html {
     scroll-behavior: smooth;
 }
 
-// scroll-bar 
+// scroll-bar
 html *::-webkit-scrollbar {
     border-radius: 0;
     width: 8px;
@@ -81,6 +81,10 @@ input {
     border: none;
 }
 
+.wrapper {
+    overflow: hidden;
+}
+
 .container {
     height: 100%;
     max-width: 1620px;
@@ -97,4 +101,21 @@ input {
 .table td {
     vertical-align: middle;
     text-align: center;
+}
+
+@media (min-width: 600px) {
+    .m-1,
+    .m-2,
+    .m-3,
+    .m-4,
+    .m-5,
+    .m-6,
+    .m-7,
+    .m-8,
+    .m-9,
+    .m-10,
+    .m-11,
+    .m-12 {
+        margin: 0 !important;
+    }
 }

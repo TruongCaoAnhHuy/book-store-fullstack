@@ -48,7 +48,7 @@ function Cart() {
         <div className="grid wide">
             <div className={cx('wrapper')}>
                 <div className="row">
-                    <div className="col l-4">
+                    <div className="col l-4 m-12 c-12">
                         <div className={cx('info')}>
                             <PopperWrapper className={cx('info-wrapper')}>
                                 <p className={cx('title')}>
@@ -70,7 +70,7 @@ function Cart() {
                             </PopperWrapper>
                         </div>
                     </div>
-                    <div className="col l-8">
+                    <div className="col l-8 m-12 c-12">
                         <div className={cx('cart')}>
                             <ul className={cx('cart-list')}>
                                 {cartLocalstorage?.map((product, index) => (

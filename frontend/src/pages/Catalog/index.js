@@ -29,8 +29,8 @@ function Catalog() {
                     <div className="col l-3">
                         <Sidebar ConsoleParent={ConsoleParent} />
                     </div>
-                    <div className="col l-9">
-                        <ProductList col={'3'} value={value} />
+                    <div className="col l-9 m-12 c-12">
+                        <ProductList col={'l-3 m-3 c-8'} value={value} />
                     </div>
                 </div>
             </div>
