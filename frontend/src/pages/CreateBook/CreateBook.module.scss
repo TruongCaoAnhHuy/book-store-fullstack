@@ -17,7 +17,8 @@
     padding: 0 20px 20px 20px;
 }
 
-.title {}
+.title {
+}
 
 .form-group {
     display: flex;
@@ -30,7 +31,6 @@
         margin-bottom: 8px;
         font-size: 1.6rem;
         line-height: 2.8rem;
-
     }
 
     input,
@@ -72,7 +72,7 @@
         font-size: 4rem;
     }
 
-    +.custom-from {
+    + .custom-from {
         margin-left: 20px;
     }
 
@@ -125,9 +125,36 @@
         height: auto;
         cursor: pointer;
 
-
-        +label {
+        + label {
             margin-left: 20px;
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .custom-from {
+        width: 150px;
+        height: 250px;
+    }
+
+    .action {
+        flex-direction: column;
+        align-items: start;
+
+        label {
+            font-size: 2rem;
+            + label {
+                margin-left: 0;
+            }
+        }
+
+        .input-checkbox {
+            width: 30px;
+            height: 30px;
+        }
+    }
+
+    .btn-action {
+        font-size: 2rem;
     }
 }

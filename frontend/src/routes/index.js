@@ -6,7 +6,6 @@ import Catalog from '~/pages/Catalog';
 import Login from '~/pages/Login';
 import Cart from '~/pages/Cart';
 import Register from '~/pages/Register';
-import Dashboard from '~/pages/Dashboard';
 import Book from '~/pages/Book';
 import User from '~/pages/User';
 import CreateBook from '~/pages/CreateBook';
@@ -65,7 +64,6 @@ const publicRoutes = [
 const privateRoutes = [{ path: '/cart/:id', component: Cart, protected: ProtectedRoute }];
 
 const adminRoutes = [
-    { path: '/admin/dashboard', component: Dashboard, protected: ProtectedRoute },
     { path: '/admin/books', component: Book, protected: ProtectedRoute },
     { path: '/admin/books/create', component: CreateBook, protected: ProtectedRoute },
     { path: '/admin/books/edit/:id', component: EditBook, protected: ProtectedRoute },

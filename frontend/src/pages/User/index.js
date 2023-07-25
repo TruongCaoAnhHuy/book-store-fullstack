@@ -55,9 +55,9 @@ function User() {
                                     <tr>
                                         <th className={cx('table-col')}>#</th>
                                         <th className={cx('table-col')}>User Name</th>
-                                        <th className={cx('table-col')}>User Email</th>
-                                        <th className={cx('table-col')}>User Phone</th>
-                                        <th className={cx('table-col')}>Created</th>
+                                        <th className={cx('table-col', 'hidden')}>User Email</th>
+                                        <th className={cx('table-col', 'hidden')}>User Phone</th>
+                                        <th className={cx('table-col', 'hidden')}>Created</th>
                                         <th className={cx('table-col')}>Admin</th>
                                         <th className={cx('table-col')}>Actions</th>
                                     </tr>
@@ -67,9 +67,9 @@ function User() {
                                         <tr key={index}>
                                             <th className={cx('table-col')}>{index + 1}</th>
                                             <td className={cx('table-col')}>{user.name}</td>
-                                            <td className={cx('table-col')}>{user.email}</td>
-                                            <td className={cx('table-col')}>{user.phone}</td>
-                                            <td className={cx('table-col')}>{user.createdAt}</td>
+                                            <td className={cx('table-col', 'hidden')}>{user.email}</td>
+                                            <td className={cx('table-col', 'hidden')}>{user.phone}</td>
+                                            <td className={cx('table-col', 'hidden')}>{user.createdAt}</td>
                                             <td className={cx('table-col')}>
                                                 {user.isAdmin ? (
                                                     <FontAwesomeIcon className={cx('admin')} icon={faCheckCircle} />

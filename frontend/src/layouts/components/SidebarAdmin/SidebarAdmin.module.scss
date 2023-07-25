@@ -46,7 +46,7 @@
     font-size: 2.4rem;
     color: var(--text-color);
     cursor: pointer;
-    transition: .2s linear;
+    transition: 0.2s linear;
 
     &:hover {
         color: var(--primary);
@@ -82,12 +82,11 @@
     margin-right: 8px;
     margin-left: -8px;
     width: 40px;
-
 }
 
 .icon-show {
     margin-left: auto;
-    transition: .8s linear;
+    transition: 0.8s linear;
 }
 
 .sidebar-content {
@@ -100,4 +99,54 @@
     padding: 125px 15px 0;
     min-height: 100vh;
     transition: all 0.3s ease-out 0s;
+}
+
+.back,
+.toggle-sidebar {
+    display: none;
+}
+
+// responsive
+@media only screen and (max-width: 1024px) {
+}
+
+// phone
+@media only screen and (max-width: 600px) {
+    .sidebar {
+        background-color: #fff;
+        height: 101vh;
+        left: 0;
+        top: 0;
+        padding: 1rem;
+        position: fixed;
+        transform: translateX(-100%);
+        transition: -webkit-transform 0.3s ease;
+        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, -webkit-transform 0.3s ease;
+        width: -webkit-max-content;
+        z-index: 98;
+        overflow: scroll;
+    }
+
+    .mobile {
+        transform: translateX(0);
+        box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
+    }
+
+    .toggle-sidebar {
+        display: block;
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 1.8rem;
+        z-index: 97;
+    }
+
+    .back {
+        display: block;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 10px;
+    }
 }

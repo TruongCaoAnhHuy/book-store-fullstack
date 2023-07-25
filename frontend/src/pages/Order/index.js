@@ -3,7 +3,6 @@ import { useSelector } from 'react-redux';
 
 import styles from './Oder.module.scss';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import Button from '~/components/Button/Button';
 import Loading from '~/layouts/components/Loading/Loading';
 
 const cx = className.bind(styles);
@@ -30,9 +29,6 @@ function Order() {
                     <PopperWrapper>
                         <header className={cx('header')}>
                             <h2 className={cx('title')}>Orders List</h2>
-                            <Button to={'/admin/users/create'} primary className={cx('btn-add')}>
-                                Add new user
-                            </Button>
                         </header>
                         <div className={cx('body')}>
                             <table className="table">
@@ -40,9 +36,9 @@ function Order() {
                                     <tr>
                                         <th className={cx('table-col')}>#</th>
                                         <th className={cx('table-col')}>User Name</th>
-                                        <th className={cx('table-col')}>User Email</th>
-                                        <th className={cx('table-col')}>User Phone</th>
-                                        <th className={cx('table-col')}>Created At</th>
+                                        <th className={cx('table-col', 'hidden')}>User Email</th>
+                                        <th className={cx('table-col', 'hidden')}>User Phone</th>
+                                        <th className={cx('table-col', 'hidden')}>Created At</th>
                                         <th className={cx('table-col')}>Cart</th>
                                         <th className={cx('table-col')}>Total</th>
                                     </tr>
@@ -53,9 +49,13 @@ function Order() {
                                             <tr key={index}>
                                                 <th className={cx('table-col')}>{index + 1}</th>
                                                 <td className={cx('table-col')}>{orderUser[index][0].name}</td>
-                                                <td className={cx('table-col')}>{orderUser[index][0].email}</td>
-                                                <td className={cx('table-col')}>{orderUser[index][0].phone}</td>
-                                                <td className={cx('table-col')}>{ts[index]}</td>
+                                                <td className={cx('table-col', 'hidden')}>
+                                                    {orderUser[index][0].email}
+                                                </td>
+                                                <td className={cx('table-col', 'hidden')}>
+                                                    {orderUser[index][0].phone}
+                                                </td>
+                                                <td className={cx('table-col', 'hidden')}>{ts[index]}</td>
                                                 <td className={cx('table-col')}>
                                                     {data.orderItems.map((item, index) => (
                                                         <div key={index} className={cx('image-item')}>

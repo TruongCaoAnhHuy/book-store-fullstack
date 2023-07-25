@@ -39,7 +39,7 @@ function ProductList(props) {
 
     return (
         <div className="grid wide">
-            <div className={`${cx('wrapper')}`}>
+            <div className="wrapper">
                 <div className={cx('products-wrapper')}>
                     {productData.length > 0 ? (
                         <ul className={`${cx('product-list')} row`}>

@@ -155,7 +155,7 @@ function Header() {
                                 </>
                             ) : (
                                 <>
-                                    <Button to={'/admin/dashboard'} className={cx('cart')}>
+                                    <Button to={'/admin/books'} className={cx('cart')}>
                                         <AdminIcon />
                                     </Button>
                                 </>
@@ -213,10 +213,10 @@ function Header() {
                         </>
                     ) : (
                         <>
-                            <Button className={cx('login-btn')} outline to={'/signin'}>
+                            <Button className={cx('login-btn', 'button')} outline to={'/signin'}>
                                 SignIn
                             </Button>
-                            <Button primary to={'/signup'}>
+                            <Button className={cx('button', 'hidden')} primary to={'/signup'}>
                                 SignUp
                             </Button>
                         </>

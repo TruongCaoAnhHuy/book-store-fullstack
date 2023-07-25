@@ -57,9 +57,9 @@ function Book() {
                                     <tr>
                                         <th className={cx('table-col')}>#</th>
                                         <th className={cx('table-col')}>Book Image</th>
-                                        <th className={cx('table-col', 'tb-name')}>Book Name</th>
-                                        <th className={cx('table-col')}>Book Author</th>
-                                        <th className={cx('table-col')}>Book Price</th>
+                                        <th className={cx('table-col', 'tb-name', 'hidden')}>Book Name</th>
+                                        <th className={cx('table-col', 'hidden')}>Book Author</th>
+                                        <th className={cx('table-col', 'hidden')}>Book Price</th>
                                         <th className={cx('table-col')}>Actions</th>
                                     </tr>
                                 </thead>
@@ -71,9 +71,9 @@ function Book() {
                                                 <td className={cx('table-col')}>
                                                     <img src={product.image} alt="book" />
                                                 </td>
-                                                <td className={cx('table-col')}>{product.name}</td>
-                                                <td className={cx('table-col')}>{product.author}</td>
-                                                <td className={cx('table-col')}>{product.price}</td>
+                                                <td className={cx('table-col', 'hidden')}>{product.name}</td>
+                                                <td className={cx('table-col', 'hidden')}>{product.author}</td>
+                                                <td className={cx('table-col', 'hidden')}>{product.price}</td>
                                                 <td className={cx('table-col')}>
                                                     <Tippy content="Edit" placement="bottom">
                                                         <Link

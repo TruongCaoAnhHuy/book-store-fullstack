@@ -12,9 +12,11 @@
     border-bottom: 1px solid var(--border);
 }
 
-.title {}
+.title {
+}
 
-.btn-add {}
+.btn-add {
+}
 
 .body {
     margin-top: 20px;
@@ -22,10 +24,8 @@
     padding: 0 20px;
 }
 
-
 .table-col {
     border: 1px solid var(--border) !important;
-
 
     img {
         width: 100px;
@@ -40,13 +40,20 @@
 .action-btn {
     font-size: 2rem;
     padding: 10px;
-    transition: .2s ease-in-out;
+    transition: 0.2s ease-in-out;
 
-    +.action-btn {
+    + .action-btn {
         margin-left: 8px;
     }
 
     &:hover {
         color: var(--primary);
+    }
+}
+
+// phone
+@media only screen and (max-width: 600px) {
+    .hidden {
+        display: none;
     }
 }

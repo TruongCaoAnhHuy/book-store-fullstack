@@ -37,7 +37,7 @@
         padding: 10px 10px 10px 0;
     }
 
-    +.nav-item {
+    + .nav-item {
         margin-left: 29px;
     }
 }
@@ -93,7 +93,7 @@
         box-shadow: 0 0 0 0.25rem #80b13b40;
     }
 
-    &:focus~.search-form-value {
+    &:focus ~ .search-form-value {
         border-color: var(--primary);
         outline: 0;
     }
@@ -233,17 +233,13 @@
 
 // responsive
 @media only screen and (max-width: 1024px) {
-
     .wrapper,
     .shrink {
-        box-shadow: 0 8px 24px hsla(210, 8%, 62%, .2);
+        box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
         height: 150px;
-
-
     }
 
     .logo {
-
         img {
             width: 150px;
         }
@@ -254,14 +250,10 @@
             width: 150px;
         }
     }
-
-
-
 }
 
 // phone
 @media only screen and (max-width: 600px) {
-
     .back,
     .menu-mobile-bar {
         display: block;
@@ -269,7 +261,7 @@
 
     .wrapper,
     .shrink {
-        box-shadow: 0 8px 24px hsla(210, 8%, 62%, .2);
+        box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
         height: 100px;
     }
 
@@ -285,9 +277,9 @@
         top: 0;
         -webkit-transform: translateX(-100%);
         transform: translateX(-100%);
-        transition: -webkit-transform .5s ease;
-        transition: transform .5s ease;
-        transition: transform .5s ease, -webkit-transform .5s ease;
+        transition: -webkit-transform 0.5s ease;
+        transition: transform 0.5s ease;
+        transition: transform 0.5s ease, -webkit-transform 0.5s ease;
         width: 100%;
         z-index: 102;
     }
@@ -300,7 +292,7 @@
         font-size: 3rem;
         margin-bottom: 25px;
 
-        +.nav-item {
+        + .nav-item {
             margin-left: 0;
         }
     }
@@ -323,7 +315,6 @@
 
     .logo,
     .logo-shrink {
-
         img {
             width: 100px;
         }
@@ -333,5 +324,18 @@
         position: absolute;
         top: 40px;
         left: 40px;
+    }
+}
+
+// phone
+@media only screen and (max-width: 600px) {
+    .hidden {
+        display: none;
+    }
+
+    .button {
+        + .button {
+            margin-left: 0;
+        }
     }
 }
