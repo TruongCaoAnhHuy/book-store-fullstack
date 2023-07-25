@@ -1,5 +1,4 @@
 import classNames from 'classnames/bind';
-import { useLayoutEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Banner from '~/components/Banner/Banner';
