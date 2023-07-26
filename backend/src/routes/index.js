@@ -1,7 +1,6 @@
 const siteRouter = require('./site');
 const registerRouter = require('./register');
 const loginRouter = require('./login');
-const adminRouter = require('./admin');
 const userRouter = require('./user');
 const bookRouter = require('./book');
 const productRouter = require('./product');

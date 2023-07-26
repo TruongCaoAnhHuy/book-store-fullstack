@@ -7,11 +7,11 @@ import 'tippy.js/dist/tippy.css'; // optional
 import { useSelector } from 'react-redux';
 import { useLayoutEffect } from 'react';
 
-import styles from './Book.module.scss';
 import Button from '~/components/Button/Button';
 import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { toast } from 'react-hot-toast';
 import Loading from '~/layouts/components/Loading/Loading';
+import styles from './Book.module.scss';
 
 const cx = classNames.bind(styles);
 
