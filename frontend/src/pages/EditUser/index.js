@@ -161,9 +161,6 @@ function EditUser() {
                             <Button primary className={cx('btn-action')}>
                                 Save
                             </Button>
-                            <Button red className={cx('btn-action')}>
-                                Reset
-                            </Button>
                         </div>
                     </form>
                 </div>

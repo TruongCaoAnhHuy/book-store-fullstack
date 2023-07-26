@@ -61,7 +61,10 @@ const publicRoutes = [
     { path: '/', component: Home },
 ];
 
-const privateRoutes = [{ path: '/cart/:id', component: Cart, protected: ProtectedRoute }];
+const privateRoutes = [
+    { path: '/cart/:id', component: Cart, protected: ProtectedRoute },
+    { path: '/cart', component: Cart, protected: ProtectedRoute },
+];
 
 const adminRoutes = [
     { path: '/admin/books', component: Book, protected: ProtectedRoute },

@@ -69,7 +69,9 @@ function User() {
                                             <td className={cx('table-col')}>{user.name}</td>
                                             <td className={cx('table-col', 'hidden')}>{user.email}</td>
                                             <td className={cx('table-col', 'hidden')}>{user.phone}</td>
-                                            <td className={cx('table-col', 'hidden')}>{user.createdAt}</td>
+                                            <td className={cx('table-col', 'hidden')}>
+                                                {new Date(user.createdAt).toLocaleString()}
+                                            </td>
                                             <td className={cx('table-col')}>
                                                 {user.isAdmin ? (
                                                     <FontAwesomeIcon className={cx('admin')} icon={faCheckCircle} />
