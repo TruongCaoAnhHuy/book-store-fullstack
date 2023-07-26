@@ -25,9 +25,7 @@ function ProductDetail() {
 
     const handleShowDetail = async (id) => {
         setLoading(true);
-        let fetchData = await fetch(`${api}/books/${id}`, {
-            method: 'POST',
-        });
+        let fetchData = await fetch(`${api}/books/${id}`);
 
         const dataRes = await fetchData.json();
         setValues({
