@@ -4,8 +4,8 @@ import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { Wrapper as PopperWrapper } from '~/components/Popper';
-import styles from './EditUser.module.scss';
 import Button from '~/components/Button/Button';
+import styles from './EditUser.module.scss';
 
 const cx = classNames.bind(styles);
 
