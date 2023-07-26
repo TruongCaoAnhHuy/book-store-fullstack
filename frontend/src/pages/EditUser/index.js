@@ -80,7 +80,7 @@ function EditUser() {
     };
 
     const handleClickEdit = async (id) => {
-        let fetchData = await fetch(`http://localhost:3002/admin/users/edit/${id}`, {
+        let fetchData = await fetch(`${api}/admin/users/edit/${id}`, {
             method: 'POST',
         });
 
