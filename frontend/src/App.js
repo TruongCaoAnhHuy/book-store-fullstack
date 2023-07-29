@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 
@@ -15,40 +15,55 @@ function App() {
     const dispatch = useDispatch();
     const api = process.env.REACT_APP_SERVER_DOMIN;
 
-    axios({
-        method: 'get',
-        url: `${api}/admin/books/slider`,
-    }).then(function (res) {
-        dispatch(setDataProductSlider(res.data));
-    });
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `${api}/admin/books/slider`,
+        }).then(function (res) {
+            dispatch(setDataProductSlider(res.data));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    axios({
-        method: 'get',
-        url: `${api}/admin/books/feature`,
-    }).then(function (res) {
-        dispatch(setDataProductFeature(res.data));
-    });
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `${api}/admin/books/feature`,
+        }).then(function (res) {
+            dispatch(setDataProductFeature(res.data));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    axios({
-        method: 'get',
-        url: `${api}/admin/users`,
-    }).then(function (res) {
-        dispatch(setDataUser(res.data));
-    });
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `${api}/admin/users`,
+        }).then(function (res) {
+            dispatch(setDataUser(res.data));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    axios({
-        method: 'get',
-        url: `${api}/admin/books`,
-    }).then(function (res) {
-        dispatch(setDataProduct(res.data));
-    });
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `${api}/admin/books`,
+        }).then(function (res) {
+            dispatch(setDataProduct(res.data));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-    axios({
-        method: 'get',
-        url: `${api}/order`,
-    }).then(function (res) {
-        dispatch(setDataOrder(res.data));
-    });
+    useEffect(() => {
+        axios({
+            method: 'get',
+            url: `${api}/order`,
+        }).then(function (res) {
+            dispatch(setDataOrder(res.data));
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return (
         <>
