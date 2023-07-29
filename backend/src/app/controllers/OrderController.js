@@ -14,7 +14,7 @@ class OrderController {
             const save = { user: data, orderItems: req.body, totalPrice: total };
             const other = await Order(save);
             const datasave = await other.save();
-            res.send(datasave);
+            res.send({ data: datasave, message: 'Order Successfully !' });
         } catch (err) {
             console.log(err);
         }

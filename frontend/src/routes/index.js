@@ -48,15 +48,12 @@ const publicRoutes = [
     { path: '/catalog/:id', component: Catalog },
     { path: '/catalog', component: Catalog },
 
-    { path: '/about/:id', component: Home },
     { path: '/about', component: Home },
 
     { path: '/contact/:id', component: Home },
     { path: '/contact', component: Home },
 
     { path: '/books/:id', component: ProductDetail },
-
-    { path: '/:id', component: Home },
 
     { path: '/', component: Home },
 ];

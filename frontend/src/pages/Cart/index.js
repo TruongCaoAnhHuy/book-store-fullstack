@@ -7,6 +7,7 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import Button from '~/components/Button/Button';
 import { DeleteIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icons';
 import { Decrease, GetTotal, Increase, RemoveCart } from '~/redux/cartSlice';
+import { toast } from 'react-hot-toast';
 
 const cx = classNames.bind(styles);
 
@@ -41,7 +42,7 @@ function Cart() {
             body: JSON.stringify(cartLocalstorage),
         });
         const dataRes = await fetchData.json();
-        console.log(dataRes);
+        toast(dataRes.message);
     };
 
     return (

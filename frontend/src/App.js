@@ -9,55 +9,46 @@ import AdminLayout from './layouts/AdminLayout/AdminLayout';
 import { setDataProduct, setDataProductSlider, setDataProductFeature } from './redux/productSlice';
 import { setDataUser } from './redux/userSlice';
 import { setDataOrder } from './redux/orderSlice';
+import axios from 'axios';
 
 function App() {
     const dispatch = useDispatch();
     const api = process.env.REACT_APP_SERVER_DOMIN;
 
-    useEffect(() => {
-        (async () => {
-            const resData = await fetch(`${api}/admin/books/slider`);
-            const data = await resData.json();
-            dispatch(setDataProductSlider(data));
-        })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    axios({
+        method: 'get',
+        url: `${api}/admin/books/slider`,
+    }).then(function (res) {
+        dispatch(setDataProductSlider(res.data));
+    });
 
-    useEffect(() => {
-        (async () => {
-            const resData = await fetch(`${api}/admin/books/feature`);
-            const data = await resData.json();
-            dispatch(setDataProductFeature(data));
-        })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    axios({
+        method: 'get',
+        url: `${api}/admin/books/feature`,
+    }).then(function (res) {
+        dispatch(setDataProductFeature(res.data));
+    });
 
-    useEffect(() => {
-        (async () => {
-            const resData = await fetch(`${api}/admin/books`);
-            const data = await resData.json();
-            dispatch(setDataProduct(data));
-        })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    axios({
+        method: 'get',
+        url: `${api}/admin/users`,
+    }).then(function (res) {
+        dispatch(setDataUser(res.data));
+    });
 
-    useEffect(() => {
-        (async () => {
-            const resData = await fetch(`${api}/admin/users`);
-            const data = await resData.json();
-            dispatch(setDataUser(data));
-        })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    axios({
+        method: 'get',
+        url: `${api}/admin/books`,
+    }).then(function (res) {
+        dispatch(setDataProduct(res.data));
+    });
 
-    useEffect(() => {
-        (async () => {
-            const resData = await fetch(`${api}/order`);
-            const data = await resData.json();
-            dispatch(setDataOrder(data));
-        })();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    axios({
+        method: 'get',
+        url: `${api}/order`,
+    }).then(function (res) {
+        dispatch(setDataOrder(res.data));
+    });
 
     return (
         <>

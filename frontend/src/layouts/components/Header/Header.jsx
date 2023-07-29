@@ -32,17 +32,17 @@ function Header() {
         {
             id: 1,
             title: 'Home',
-            path: userData ? `/${userData.id}` : '/',
+            path: '/',
         },
         {
             id: 2,
             title: 'Books',
-            path: userData ? `/catalog/${userData.id}` : '/catalog',
+            path: '/catalog',
         },
         {
             id: 3,
             title: 'About Us',
-            path: userData ? `/about/${userData.id}` : '/about',
+            path: '/about',
         },
         {
             id: 4,

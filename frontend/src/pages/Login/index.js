@@ -57,7 +57,7 @@ function Login() {
                     navigative('/');
                 } else {
                     localStorage.setItem('user', JSON.stringify(dataRes.data));
-                    navigative(`/${dataRes.data.id}`);
+                    navigative(`/`);
                     sessionStorage.removeItem('admin');
                 }
             }
