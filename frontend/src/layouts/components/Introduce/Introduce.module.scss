@@ -1,0 +1,155 @@
+.wrapper {
+
+    margin-top: -170px;
+    width: 100%;
+    background: url('../../../assets/img/introduce.jpg') center / cover no-repeat;
+}
+
+.container {
+    padding-top: 170px;
+}
+
+.image {
+    position: relative;
+    padding-top: 80px;
+    padding-bottom: 170px;
+    text-align: center;
+    vertical-align: middle;
+
+    img {
+        width: 350px;
+        height: 325px;
+        animation: updown 1.5s linear infinite;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        width: 350px;
+        height: 50px;
+        background-color: var(--gray-color);
+        box-shadow: 0 0 0 4px var(--gray-color-blur),
+            0 0 50px var(--gray-color);
+        border-radius: 50%;
+        bottom: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scaleShadow 1.5s linear infinite;
+    }
+}
+
+@keyframes scaleShadow {
+    0% {
+        width: 350px;
+    }
+
+    50% {
+        width: 250px;
+    }
+
+    100% {
+        width: 350px;
+    }
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-25px)
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.title {
+    margin-top: -60px !important;
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+
+    .intro {
+        font-size: 7rem;
+        line-height: 8rem;
+        color: var(--text-color);
+        margin-bottom: 10px;
+    }
+
+    .active {
+        position: relative;
+        color: #f44344;
+        margin-bottom: 50px;
+
+        &::after {
+            position: absolute;
+            content: "";
+            background: #ff6162;
+            height: 5px;
+            width: 70px;
+            bottom: -30px;
+            left: 0;
+        }
+    }
+}
+
+.desc {
+    font-weight: 400;
+    color: var(--text-color);
+    font-size: 1.8rem;
+    line-height: 30px;
+    margin-bottom: 30px;
+}
+
+.more-btn {
+    display: block;
+    max-width: 180px;
+    border-radius: 30px;
+    margin-left: -5px;
+
+    &:hover {
+        background-color: var(--primary);
+        color: var(--white);
+    }
+}
+
+@media (min-width: 1024px) and (max-width: 1239px) {
+    .wrapper {
+        margin-top: -200px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .image {
+        padding-bottom: 161px;
+    }
+
+    .title {
+
+        .intro {
+            margin: 0 20px;
+            font-size: 3rem;
+            line-height: 4rem;
+        }
+
+        .active {
+            &::after {
+                bottom: -5px;
+                left: 2px;
+            }
+        }
+    }
+
+    .desc {
+        display: none;
+    }
+
+    .more-btn {
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 17px;
+    }
+}

@@ -46,6 +46,8 @@
     display: inline-flex;
     justify-content: center;
     min-width: 140px;
+    opacity: 0.5;
+    cursor: not-allowed !important;
 }
 
 .google-btn {
@@ -63,7 +65,6 @@
     line-height: 1;
     margin-left: 5px;
     position: relative;
-    top: -4.5px;
 }
 
 .info-form {

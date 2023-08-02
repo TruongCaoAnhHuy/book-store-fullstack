@@ -35,7 +35,16 @@ function Slider() {
         <div className="grid wide">
             {productData.length > 0 ? (
                 <div className={cx('wrapper')}>
-                    <Carousel responsive={responsive} autoPlaySpeed={1500} infinite={true} autoPlay centerMode>
+                    <Carousel
+                        swipeable={false}
+                        draggable={false}
+                        responsive={responsive}
+                        autoPlaySpeed={1500}
+                        infinite={true}
+                        autoPlay
+                        centerMode
+                        containerClass="carousel-container"
+                    >
                         {productData.map((product, index) => (
                             <ProductItem
                                 className={'col l-4'}

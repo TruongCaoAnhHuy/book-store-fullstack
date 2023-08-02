@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import TippyHeadless from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css'; // optional
@@ -226,6 +226,7 @@ function Header() {
             <div className={`${cx('logo')} ${cx(isShrink ? 'logo-shrink' : '')}`}>
                 <img src={images.logo} alt="logo" />
             </div>
+            <Link to={'/'} className={cx('link')}></Link>
         </header>
     );
 }

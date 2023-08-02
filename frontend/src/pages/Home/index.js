@@ -5,6 +5,7 @@ import Banner from '~/components/Banner/Banner';
 import Slider from '~/layouts/components/Slider/Slider';
 import FeatureProduct from '~/layouts/FeatureProduct/FeatureProduct';
 import styles from './Home.module.scss';
+import Introduce from '~/layouts/components/Introduce/Introduce';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +19,8 @@ function Home() {
     return (
         <>
             <div className={cx('product')}>
+                <Introduce />
+                <h1 className={cx('title')}>Top Products</h1>
                 <Slider />
                 <div className={cx('banner')}>
                     <Banner />

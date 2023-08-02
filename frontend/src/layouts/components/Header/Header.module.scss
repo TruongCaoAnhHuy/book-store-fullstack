@@ -1,5 +1,5 @@
 .wrapper {
-    background-color: var(--white);
+    background-color: transparent;
     height: 170px;
     left: 0;
     position: fixed;
@@ -11,6 +11,7 @@
 }
 
 .shrink {
+    background-color: var(--white);
     height: 100px;
     box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
     z-index: 1001;
@@ -37,7 +38,7 @@
         padding: 10px 10px 10px 0;
     }
 
-    + .nav-item {
+    +.nav-item {
         margin-left: 29px;
     }
 }
@@ -93,7 +94,7 @@
         box-shadow: 0 0 0 0.25rem #80b13b40;
     }
 
-    &:focus ~ .search-form-value {
+    &:focus~.search-form-value {
         border-color: var(--primary);
         outline: 0;
     }
@@ -213,11 +214,27 @@
     justify-content: center;
     pointer-events: none;
     position: absolute;
+    cursor: pointer;
+
 
     img {
         width: 170px;
         transition: 0.3s linear;
     }
+}
+
+.link {
+    display: block;
+    position: relative;
+    top: -170px;
+    left: 50%;
+    transform: translateX(-50%);
+    content: "";
+    background-color: transparent;
+    width: 170px;
+    height: 170px;
+    pointer-events: all;
+    z-index: 1000;
 }
 
 .logo-shrink {
@@ -233,6 +250,7 @@
 
 // responsive
 @media only screen and (max-width: 1024px) {
+
     .wrapper,
     .shrink {
         box-shadow: 0 8px 24px hsla(210, 8%, 62%, 0.2);
@@ -254,6 +272,7 @@
 
 // phone
 @media only screen and (max-width: 600px) {
+
     .back,
     .menu-mobile-bar {
         display: block;
@@ -292,7 +311,7 @@
         font-size: 3rem;
         margin-bottom: 25px;
 
-        + .nav-item {
+        +.nav-item {
             margin-left: 0;
         }
     }
@@ -334,8 +353,12 @@
     }
 
     .button {
-        + .button {
+        +.button {
             margin-left: 0;
         }
+    }
+
+    .link {
+        display: none;
     }
 }
