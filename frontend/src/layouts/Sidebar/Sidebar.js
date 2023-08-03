@@ -9,9 +9,14 @@ import { BackBtnIconMobile } from '~/components/Icons/Icons';
 const cx = classNames.bind(styles);
 
 function Sidebar(props) {
-    const productData = useSelector((state) => state.product.productList);
+    const productSliderData = useSelector((state) => state.product.productSliderList);
+    const productFeatureData = useSelector((state) => state.product.productFeatureList);
+    const productSiteData = useSelector((state) => state.product.productList);
+
+    const productDataSet = [...productSliderData, ...productFeatureData, ...productSiteData];
+
     const authorArr = [];
-    productData.map((product) => {
+    productDataSet.map((product) => {
         return authorArr.push(product.author);
     });
     // arrayAuthor
@@ -93,7 +98,13 @@ function Sidebar(props) {
 
     return (
         <>
-            <div className={cx('wrapper', productData.length > 0 ? '' : 'hidden', toggleMenuMobile ? 'mobile' : '')}>
+            <div
+                className={cx(
+                    'wrapper',
+                    productDataSet.length > authors.length ? '' : 'hidden',
+                    toggleMenuMobile ? 'mobile' : '',
+                )}
+            >
                 <div className={cx('back')} onClick={handleToggleMenuMobile}>
                     <BackBtnIconMobile />
                 </div>

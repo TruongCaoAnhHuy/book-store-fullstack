@@ -20,7 +20,14 @@ function Book() {
         window.scrollTo(0, 0);
     }, []);
 
-    const productData = useSelector((state) => state.product.productList);
+    const productSliderData = useSelector((state) => state.product.productSliderList);
+    const productFeatureData = useSelector((state) => state.product.productFeatureList);
+    const productSiteData = useSelector((state) => state.product.productList);
+
+    const productDataSet = [...productSliderData, ...productFeatureData, ...productSiteData];
+
+    const result = productDataSet.filter((item, index, self) => index === self.findIndex((t) => t._id === item._id));
+
     const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleClickDelete = async (id) => {
@@ -64,8 +71,8 @@ function Book() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {productData.length > 0 ? (
-                                        productData.map((product, index) => (
+                                    {result.length > 5 ? (
+                                        result.map((product, index) => (
                                             <tr key={product._id}>
                                                 <th className={cx('table-col')}>{index + 1}</th>
                                                 <td className={cx('table-col')}>

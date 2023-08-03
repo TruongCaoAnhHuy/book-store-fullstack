@@ -9,15 +9,22 @@ import Loading from '../components/Loading/Loading';
 const cx = classNames.bind(styles);
 
 function ProductList(props) {
-    const productData = useSelector((state) => state.product.productList);
-    const [newList, setNewList] = useState(productData);
+    const productSliderData = useSelector((state) => state.product.productSliderList);
+    const productFeatureData = useSelector((state) => state.product.productFeatureList);
+    const productSiteData = useSelector((state) => state.product.productList);
 
+    const productDataSet = [...productSliderData, ...productFeatureData, ...productSiteData];
+
+    const result = productDataSet.filter((item, index, self) => index === self.findIndex((t) => t._id === item._id));
+
+    const [newList, setNewList] = useState(result);
     useEffect(() => {
-        setNewList(productData);
-    }, [productData]);
+        setNewList(result);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [productSiteData, productFeatureData, productSliderData]);
 
     const updateProductList = useCallback(() => {
-        let temp = productData;
+        let temp = result;
         if (props.value[0].length > 0) {
             temp = temp.filter((item) => props.value[0].includes(item.author));
         }
@@ -39,9 +46,9 @@ function ProductList(props) {
 
     return (
         <div className="grid wide">
-            <div className="wrapper">
+            <div>
                 <div className={cx('products-wrapper')}>
-                    {productData.length > 0 ? (
+                    {productDataSet.length >= 5 ? (
                         <ul className={`${cx('product-list')} row`}>
                             {newList.map((product) => (
                                 <li key={product._id} className={`${cx('product-item')} col ${props.col}`}>
