@@ -1,6 +1,5 @@
 .wrapper {
-    box-shadow: 0 0 10px #00000014;
-    overflow: hidden;
+    overflow-x: clip;
 }
 
 @media only screen and (max-width: 600px) {
