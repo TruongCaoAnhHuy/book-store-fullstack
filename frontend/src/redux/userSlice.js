@@ -33,6 +33,7 @@ export const userSlice = createSlice({
             state.phone = '';
             state.createdAt = '';
             localStorage.removeItem('user');
+            localStorage.removeItem('cartItems');
             sessionStorage.removeItem('admin');
         },
 

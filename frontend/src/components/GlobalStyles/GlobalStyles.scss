@@ -82,6 +82,10 @@ input {
     border: none;
 }
 
+.wrapper {
+    overflow: hidden;
+}
+
 .container {
     height: 100%;
     max-width: 1620px;

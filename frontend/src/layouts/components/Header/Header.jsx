@@ -21,6 +21,9 @@ import { Wrapper as PopperWrapper } from '~/components/Popper';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutRedux } from '~/redux/userSlice';
 import { GetTotal } from '~/redux/cartSlice';
+import axios from 'axios';
+import Modal from '~/components/Modal/Modal';
+import Loading from '../Loading/Loading';
 
 const cx = classNames.bind(styles);
 
@@ -76,16 +79,38 @@ function Header() {
     // handle user
     const userStorage = JSON.parse(localStorage.getItem('user'));
     const adminStorage = JSON.parse(sessionStorage.getItem('admin'));
+    const cartLocalstorage = JSON.parse(localStorage.getItem('cartItems'));
 
     const currentUser = userStorage ? true : false;
     const adminUser = adminStorage ? true : false;
 
+    const api = process.env.REACT_APP_SERVER_DOMIN;
+
+    const [loading, setLoading] = useState(false);
+
     const handleLogout = () => {
-        dispatch(logoutRedux());
-        setTimeout(() => {
-            navigative('/');
-            window.location.reload();
-        }, 500);
+        setLoading(true);
+        axios({
+            method: 'post',
+            url: `${api}/user/logout/${userStorage.id}`,
+            data: [userStorage, cartLocalstorage],
+        })
+            .then(function (res) {
+                setLoading(false);
+                dispatch(logoutRedux());
+                setTimeout(() => {
+                    navigative('/');
+                    window.location.reload();
+                }, 500);
+                console.log(res.data.message);
+            })
+            .catch((err) => console.log(err));
+
+        // dispatch(logoutRedux());
+        // setTimeout(() => {
+        //     navigative('/');
+        //     window.location.reload();
+        // }, 500);
     };
 
     const { carts, quantity } = useSelector((item) => item.cart);
@@ -227,6 +252,13 @@ function Header() {
                 <img src={images.logo} alt="logo" />
             </div>
             <Link to={'/'} className={cx('link')}></Link>
+            {loading ? (
+                <Modal className={cx('overlay-block')}>
+                    <Loading className={cx('loading')} />
+                </Modal>
+            ) : (
+                <></>
+            )}
         </header>
     );
 }

@@ -1,3 +1,4 @@
+const Category = require('../models/Category');
 const User = require('../models/User');
 
 class LoginController {
@@ -26,6 +27,37 @@ class LoginController {
             res.send({ message: 'Update successfully !!', data: data, alert: true });
         } catch (error) {
             return res.send({ message: 'Email is already sign up !!!', alert: false });
+        }
+    }
+
+    //[GET] /users/logout/:id
+    async logout(req, res, next) {
+        try {
+            const check = await Category.findOne({ user: req.body[0].id });
+            const data = await User.findById(req.body[0].id);
+            const save = { user: data, cartItems: req.body[1] };
+            const category = await Category(save);
+            if (check) {
+                await Category.updateOne({ user: req.body[0].id }, save);
+                res.send({ message: 'Update !' });
+            } else {
+                await category.save();
+                res.send({ message: 'Save !' });
+            }
+        } catch (err) {
+            console.log(err);
+        }
+        // const data = req.body;
+        // res.send({ message: data });
+    }
+
+    //[GET] /users/login/:id
+    async login(req, res, next) {
+        try {
+            const data = await Category.findOne({ user: req.body.id });
+            res.send(data);
+        } catch (error) {
+            console.log(error);
         }
     }
 }

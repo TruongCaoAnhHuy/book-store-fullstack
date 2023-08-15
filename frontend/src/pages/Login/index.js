@@ -11,26 +11,27 @@ import styles from './Login.module.scss';
 import { loginRedux } from '~/redux/userSlice';
 import Loading from '~/layouts/components/Loading/Loading';
 import Modal from '~/components/Modal/Modal';
+import axios from 'axios';
+import { setDataCategory } from '~/redux/categorySlice';
 
 const cx = classNames.bind(styles);
 
 function Login() {
     useLayoutEffect(() => {
         window.scrollTo(0, 0);
-    });
+    }, []);
 
     const navigative = useNavigate();
+    const dispatch = useDispatch();
+    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const [loading, setLoading] = useState(false);
+    console.log(loading);
 
     const [values, setValues] = useState({
         email: '',
         password: '',
     });
-
-    const dispatch = useDispatch();
-
-    const api = process.env.REACT_APP_SERVER_DOMIN;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -48,7 +49,6 @@ function Login() {
             const dataRes = await fetchData.json();
             toast(dataRes.message);
             if (dataRes.alert) {
-                setLoading(false);
                 dispatch(loginRedux(dataRes));
 
                 if (dataRes.data.isAdmin) {
@@ -57,7 +57,21 @@ function Login() {
                     navigative('/');
                 } else {
                     localStorage.setItem('user', JSON.stringify(dataRes.data));
-                    navigative(`/`);
+                    const userStorage = JSON.parse(localStorage.getItem('user'));
+
+                    axios({
+                        method: 'post',
+                        url: `${api}/user/login/${userStorage.id}`,
+                        data: userStorage,
+                    })
+                        .then(function (res) {
+                            dispatch(setDataCategory(res.data.cartItems));
+                            navigative(`/`);
+                            window.location.reload();
+                            setLoading(false);
+                        })
+                        .catch((err) => console.log(err));
+
                     sessionStorage.removeItem('admin');
                 }
             }
@@ -124,8 +138,8 @@ function Login() {
                 </div>
             </PopperWrapper>
             {loading ? (
-                <Modal>
-                    <Loading />
+                <Modal className={cx('overlay-block')}>
+                    <Loading className={cx('loading')} />
                 </Modal>
             ) : (
                 <></>

@@ -6,9 +6,13 @@ import styles from './Loading.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Loading() {
+function Loading({ className }) {
+    const classes = cx('wrapper', {
+        [className]: className,
+    });
+
     return (
-        <div className={cx('wrapper')}>
+        <div className={classes}>
             <FontAwesomeIcon className={cx('icon-loading')} icon={faSpinner} />
         </div>
     );

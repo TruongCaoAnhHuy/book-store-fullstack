@@ -12,6 +12,7 @@ function route(app) {
     app.use('/books', bookRouter);
     app.use('/admin/books', productRouter);
     app.use('/admin/users', userRouter);
+    app.use('/user', userRouter);
     app.use('/order', orderRouter);
     app.use('/', siteRouter);
 }

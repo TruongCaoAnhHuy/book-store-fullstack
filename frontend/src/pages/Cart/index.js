@@ -8,6 +8,7 @@ import Button from '~/components/Button/Button';
 import { DeleteIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icons';
 import { Decrease, GetTotal, Increase, RemoveCart } from '~/redux/cartSlice';
 import { toast } from 'react-hot-toast';
+import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +26,7 @@ function Cart() {
     }, [carts]);
 
     const cartLocalstorage = JSON.parse(localStorage.getItem('cartItems'));
+    console.log(cartLocalstorage.categoryList);
     const userLocalstorage = JSON.parse(localStorage.getItem('user'));
 
     const [test, setTest] = useState('');

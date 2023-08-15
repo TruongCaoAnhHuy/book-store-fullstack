@@ -157,3 +157,9 @@
         justify-content: center;
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .wrapper {
+        margin-bottom: 30px;
+    }
+}
