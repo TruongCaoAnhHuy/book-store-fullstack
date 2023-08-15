@@ -8,7 +8,6 @@ import Button from '~/components/Button/Button';
 import { DeleteIcon, MinusIcon, PlusIcon } from '~/components/Icons/Icons';
 import { Decrease, GetTotal, Increase, RemoveCart } from '~/redux/cartSlice';
 import { toast } from 'react-hot-toast';
-import axios from 'axios';
 
 const cx = classNames.bind(styles);
 
