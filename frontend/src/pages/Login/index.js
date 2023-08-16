@@ -38,7 +38,6 @@ function Login() {
 
         const { email, password } = values;
         if (email && password) {
-            setLoading(true);
             const fetchData = await fetch(`${api}/signin`, {
                 method: 'POST',
                 headers: {
@@ -50,6 +49,7 @@ function Login() {
             toast(dataRes.message);
             if (dataRes.alert) {
                 dispatch(loginRedux(dataRes));
+                setLoading(true);
 
                 if (dataRes.data.isAdmin) {
                     localStorage.removeItem('user');
